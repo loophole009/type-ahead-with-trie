@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+
+<style>
+    .align-right { text-align: right; }
+</style>
+
+<title>se</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body id="search-body">
+<section class="container mt-5" hx-boost="true">
+    <h3>
+        Search
+        <span class="htmx-indicator">
+        <i class="fa fa-spinner" ></i> Loading...
+        </span>
+    </h3>
+    <form th:action="@{/search}" method="get">
+        <div class="input-group mb-3 w-50">
+            <input class="form-control" type="search" name="keyword" th:value="${keyword}" placeholder="Looking for something?" hx-get="/get" hx-trigger="keyup changed delay:1000ms, get" hx-target="#search-results" hx-indicator=".htmx-indicator">
+        </div>
+    </form>
+    <table class="table table-sm mt-2 w-50">
+        <thead>
+        <tr>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody id="search-results">
+        <tr th:insert="fragments :: search-results">
+        </tr>
+        </tbody>
+    </table>
+</section>
+<script type="text/javascript" th:src="@{/webjars/htmx.org/dist/htmx.min.js}"></script>
+</body>
+</html>
