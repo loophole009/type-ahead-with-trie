@@ -63,7 +63,11 @@ public class Trie {
 
     public void suggestHelper(TrieNode root, List<String> list, StringBuffer curr) {
         if (root.isWord) {
-            list.add(curr.toString());
+            if (list.size()<2){
+                list.add(curr.substring(0,curr.toString().indexOf(";")-1).concat(" \uD835\uDC8A\uD835\uDC8F").concat(curr.substring(curr.toString().indexOf(";")+1,curr.toString().length())));
+            }else{
+                list.add(curr.substring(0,curr.toString().indexOf(";")-1));
+            }
         }
 
         if (root.children == null || root.children.isEmpty())
